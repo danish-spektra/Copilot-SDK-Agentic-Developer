@@ -1,4 +1,4 @@
-# Module 4: Agent Merge Configuration & Audit
+# Exercise 4: Agent Merge Configuration & Audit
 
 ### Estimated Duration: 60 Minutes
 
@@ -14,9 +14,9 @@ In this final module, you will assign a real issue to the Copilot cloud agent an
 
 You will be able to complete the following tasks:
 
-- Task 4.1: Configure Agent Merge for multi-agent pull request workflows
-- Task 4.2: Review merge decisions and enforce governance policy in GitHub Enterprise Cloud
-- Task 4.3: Audit agent-driven changes for compliance before release
+- Task 1: Configure Agent Merge for multi-agent pull request workflows
+- Task 2: Review merge decisions and enforce governance policy in GitHub Enterprise Cloud
+- Task 3: Audit agent-driven changes for compliance before release
 
 ## Architecture Diagram
 
@@ -24,7 +24,7 @@ You will be able to complete the following tasks:
 
 > **Image-generation prompt:** *A flat-design pipeline diagram on a white background, flowing left to right. Step 1: an issue icon labeled "Issue #1: validate orders" with a small robot badge labeled "assigned to Copilot". Arrow to Step 2: a pull request icon labeled "PR by Copilot cloud agent". Arrow to Step 3: a large box labeled "Agent Merge" containing three checklist rows: "monitors CI", "tracks required reviewers", "merges when conditions met". Above the box, a policy scroll icon labeled "branch ruleset: CI must pass". Arrow to Step 4: a merged-PR icon in purple labeled "merged". Below the whole pipeline, a wide bar labeled "Enterprise audit log — actor_is_agent, on behalf of user" with a magnifying glass icon. GitHub palette: dark gray, blue, purple accent for the merge.*
 
-## Task 4.1: Configure Agent Merge for multi-agent pull request workflows
+## Task 1: Configure Agent Merge for multi-agent pull request workflows
 
 Remember issue #101 from your Monday triage report — the one your own agent flagged as fix-first? A customer ordered **-3 jetpacks**. Time to close the loop: instead of fixing it yourself, you'll file it as a GitHub issue, hand it to the Copilot cloud agent, and put the resulting pull request under Agent Merge's care.
 
@@ -83,9 +83,9 @@ Remember issue #101 from your Monday triage report — the one your own agent fl
 
    ![](./images/module4/m4-t1-automation-level.png)
 
-   > **Important:** Do not merge the pull request manually at any point in this module — the whole point is to watch Agent Merge do it under policy. If the PR merges before you finish Task 4.2, that's Agent Merge working as configured; continue with the tasks against the merged PR.
+   > **Important:** Do not merge the pull request manually at any point in this module — the whole point is to watch Agent Merge do it under policy. If the PR merges before you finish Task 2, that's Agent Merge working as configured; continue with the tasks against the merged PR.
 
-## Task 4.2: Review merge decisions and enforce governance policy in GitHub Enterprise Cloud
+## Task 2: Review merge decisions and enforce governance policy in GitHub Enterprise Cloud
 
 An agent that merges code is only acceptable if it merges **by the rules**. In this task you'll write the rule — a branch ruleset requiring CI to pass — watch Agent Merge honor it, and then step up a level to see how GitHub Enterprise Cloud governs agents across the whole organization.
 
@@ -114,7 +114,7 @@ An agent that merges code is only acceptable if it merges **by the rules**. In t
 
    ![](./images/module4/m4-t2-merged-timeline.png)
 
-   > **Note:** If CI had failed, your automation level from Task 4.1 permits Agent Merge to download the failure logs, diagnose them, and push a fix — the "drive CI back to green" loop. With a healthy test suite it usually passes first try; you'll know the loop exists the day a flaky test meets it.
+   > **Note:** If CI had failed, your automation level from Task 1 permits Agent Merge to download the failure logs, diagnose them, and push a fix — the "drive CI back to green" loop. With a healthy test suite it usually passes first try; you'll know the loop exists the day a flaky test meets it.
 
 1. Now zoom out from one PR to the whole enterprise. In the top-right corner of GitHub, click your **profile avatar**, select **Your enterprises**, and open the CloudLabs enterprise. In the enterprise navigation, go to **Settings**, then find the **AI controls > Agents** page.
 
@@ -130,7 +130,7 @@ An agent that merges code is only acceptable if it merges **by the rules**. In t
 
    ![](./images/module4/m4-t2-control-plane.png)
 
-## Task 4.3: Audit agent-driven changes for compliance before release
+## Task 3: Audit agent-driven changes for compliance before release
 
 Contoso's compliance officer has one question before the summer-sale release goes out: *"Prove to me what the agents did, who let them do it, and that nothing merged outside policy."* Everything you need is already recorded — this task is about knowing where to look.
 

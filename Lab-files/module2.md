@@ -1,4 +1,4 @@
-# Module 2: Multi-Language SDK & /security-review Skill - Node.js
+# Exercise 2: Multi-Language SDK & /security-review Skill - Node.js
 
 ### Estimated Duration: 60 Minutes
 
@@ -14,9 +14,9 @@ In this module, you will port the Python triage agent to the Copilot SDK for Nod
 
 You will be able to complete the following tasks:
 
-- Task 2.1: Port the Module 1 workflow to the Copilot SDK for Node.js
-- Task 2.2: Enable and run the /security-review skill against a codebase
-- Task 2.3: Compare SDK behavior and output across the two languages
+- Task 1: Port the Module 1 workflow to the Copilot SDK for Node.js
+- Task 2: Enable and run the /security-review skill against a codebase
+- Task 3: Compare SDK behavior and output across the two languages
 
 ## Architecture Diagram
 
@@ -24,7 +24,7 @@ You will be able to complete the following tasks:
 
 > **Image-generation prompt:** *A flat-design diagram on a white background, split into two halves. Top half: two file icons side by side — "triage_agent.py" with a Python logo and "triage-agent.mjs" with a Node.js logo — both with arrows converging into one shared box labeled "Copilot SDK — same agent runtime, six languages". Bottom half: a terminal window icon labeled "Copilot CLI /security-review" scanning a file icon labeled "legacy/coupon-service.js" with a red warning badge, producing a list with shield icons labeled "findings: severity × confidence". GitHub dark-gray, blue, and one red accent.*
 
-## Task 2.1: Port the Module 1 workflow to the Copilot SDK for Node.js
+## Task 1: Port the Module 1 workflow to the Copilot SDK for Node.js
 
 Same agent, new passport. The Copilot SDK's six language bindings are thin layers over one shared runtime — so porting the triage agent is a translation exercise, not a rewrite. Fifteen minutes from `pip` to `npm`.
 
@@ -86,7 +86,7 @@ Same agent, new passport. The Copilot SDK's six language bindings are thin layer
 
    > **Note:** The SDK is newly GA and its API surface is still being refined. If a method signature differs in the installed version, check `https://docs.github.com/en/copilot/how-tos/copilot-sdk` for the current Node.js examples — the concepts and structure remain the same.
 
-## Task 2.2: Enable and run the /security-review skill against a codebase
+## Task 2: Enable and run the /security-review skill against a codebase
 
 The legacy coupon service is back from the archive — and it's a time capsule of 2019's worst habits. Before the storefront team wires it into the summer sale, you'll let Copilot's dedicated security reviewer read it. `/security-review` scans your **local code changes** and returns findings scored by severity and confidence, across 11 vulnerability categories.
 
@@ -181,7 +181,7 @@ The legacy coupon service is back from the archive — and it's a time capsule o
 
    > **Note:** This is the agentic security loop in miniature: scan → triage → delegate the fix → re-scan to verify. In Module 4, you'll see the same loop running server-side on pull requests, without you in the terminal at all.
 
-## Task 2.3: Compare SDK behavior and output across the two languages
+## Task 3: Compare SDK behavior and output across the two languages
 
 You now have the same agent in two languages and a security-hardened codebase. Before Contoso standardizes on one SDK — or both — the team wants an engineering answer, not a preference: what's actually identical across the bindings, and what differs?
 

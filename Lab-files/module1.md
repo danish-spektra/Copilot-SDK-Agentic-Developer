@@ -1,4 +1,4 @@
-# Module 1: Copilot SDK Foundations - Python
+# Exercise 1: Copilot SDK Foundations - Python
 
 ### Estimated Duration: 60 Minutes
 
@@ -14,9 +14,9 @@ In this module, you will set up the GitHub Copilot SDK in a Python project, buil
 
 You will be able to complete the following tasks:
 
-- Task 1.1: Set up the GitHub Copilot SDK (GA) in a Python project
-- Task 1.2: Build a first agentic developer workflow against GitHub Copilot Business
-- Task 1.3: Understand core SDK concepts that carry across all supported languages
+- Task 1: Set up the GitHub Copilot SDK (GA) in a Python project
+- Task 2: Build a first agentic developer workflow against GitHub Copilot Business
+- Task 3: Understand core SDK concepts that carry across all supported languages
 
 ## Architecture Diagram
 
@@ -24,7 +24,7 @@ You will be able to complete the following tasks:
 
 > **Image-generation prompt:** *A simple horizontal flow diagram on a white background, flat design. Left: a Python file icon labeled "triage_agent.py". Arrow labeled "CopilotClient → session → prompt" to a center box labeled "Copilot SDK (bundled Copilot CLI runtime)" with a small robot icon. Arrow labeled "reads files, calls tools" to a right box: a repository folder labeled "contoso-traders-api" containing "data/issues.json". A return arrow labeled "streamed triage report" curves back from the center box to the Python file. GitHub blue and dark-gray palette.*
 
-## Task 1.1: Set up the GitHub Copilot SDK (GA) in a Python project
+## Task 1: Set up the GitHub Copilot SDK (GA) in a Python project
 
 Before an agent can triage anything, it needs a codebase to work in and a runtime to think with. In this task, you'll clone the Galactic Gadget Shop API, verify the pre-installed toolchain, authenticate the Copilot CLI, and install the Python SDK.
 
@@ -107,7 +107,7 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
 
    > **Note:** The Python SDK bundles the Copilot CLI runtime automatically — your scripts don't depend on the globally installed CLI, so there's nothing extra to wire up.
 
-## Task 1.2: Build a first agentic developer workflow against GitHub Copilot Business
+## Task 2: Build a first agentic developer workflow against GitHub Copilot Business
 
 Time to hand Monday's chore to an agent. You'll write a small script that starts a Copilot session, points it at the issue backlog, and asks for a triage report — first as a single response, then streamed token-by-token like a real assistant.
 
@@ -205,7 +205,7 @@ Time to hand Monday's chore to an agent. You'll write a small script that starts
 
    > **Note:** The SDK is newly GA and evolving quickly. If an attribute name differs in the installed version, check the current examples at `https://docs.github.com/en/copilot/how-tos/copilot-sdk/getting-started` — the client → session → prompt shape stays the same.
 
-## Task 1.3: Understand core SDK concepts that carry across all supported languages
+## Task 3: Understand core SDK concepts that carry across all supported languages
 
 The agent can read your repo — but its real power is calling **your** code. In this task, you'll register a custom tool the agent can invoke, then step back and name the concepts you've been using, because in Module 2 you'll meet them all again wearing JavaScript syntax.
 

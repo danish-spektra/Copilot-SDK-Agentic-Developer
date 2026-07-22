@@ -1,4 +1,4 @@
-# Module 3: Copilot CLI: TUI, Voice & /every Scheduling
+# Exercise 3: Copilot CLI: TUI, Voice & /every Scheduling
 
 ### Estimated Duration: 60 Minutes
 
@@ -14,9 +14,9 @@ In this module, you will explore the redesigned Copilot CLI text-based UI (TUI),
 
 You will be able to complete the following tasks:
 
-- Task 3.1: Navigate the redesigned Copilot CLI text-based UI (TUI)
-- Task 3.2: Drive the CLI with voice input for common developer tasks
-- Task 3.3: Schedule a recurring agent run with /every, backed by GitHub Actions
+- Task 1: Navigate the redesigned Copilot CLI text-based UI (TUI)
+- Task 2: Drive the CLI with voice input for common developer tasks
+- Task 3: Schedule a recurring agent run with /every, backed by GitHub Actions
 
 ## Architecture Diagram
 
@@ -24,7 +24,7 @@ You will be able to complete the following tasks:
 
 > **Image-generation prompt:** *A flat-design diagram on a white background. Center: a large terminal window labeled "Copilot CLI — experimental TUI" showing four tab labels across its top: "Session, Issues, Pull requests, Gists". Left of the terminal: a microphone icon with a sound wave labeled "local voice input" and a rubber duck icon labeled "/rubber-duck", both with arrows into the terminal. Right of the terminal: a clock icon labeled "/every 30m" with an arrow to a GitHub Actions gear/octopus icon labeled "scheduled workflow (cron)" and a calendar badge labeled "nightly run". GitHub dark-gray and blue palette with a yellow accent on the duck.*
 
-## Task 3.1: Navigate the redesigned Copilot CLI text-based UI (TUI)
+## Task 1: Navigate the redesigned Copilot CLI text-based UI (TUI)
 
 The old CLI was a prompt; the new one is a workspace. In this task, you'll switch on the experimental interface and discover that your issues, pull requests, and gists now live one Tab keypress away from your agent session — then put the famous rubber duck to work on your Module 2 code.
 
@@ -74,7 +74,7 @@ The old CLI was a prompt; the new one is a workspace. In this task, you'll switc
 
    > **Note:** Rubber-duck debugging is the old practice of explaining your code line-by-line to a toy duck until you spot the bug yourself. Copilot's version talks back.
 
-## Task 3.2: Drive the CLI with voice input for common developer tasks
+## Task 2: Drive the CLI with voice input for common developer tasks
 
 Contoso's accessibility guild has been asking about hands-free workflows since the pilot began — and honestly, some prompts are just faster to say than to type. Copilot CLI's voice input runs **entirely on your machine**: audio is transcribed locally and never leaves the VM.
 
@@ -102,7 +102,7 @@ Contoso's accessibility guild has been asking about hands-free workflows since t
 
    > **Note:** Notice that Copilot still asked before running a command. Voice changes the input, not the safety model — the permission gate applies to every channel.
 
-## Task 3.3: Schedule a recurring agent run with /every, backed by GitHub Actions
+## Task 3: Schedule a recurring agent run with /every, backed by GitHub Actions
 
 The ops team's wish: a triage report that shows up on its own. `/every` turns any prompt into a recurring agent run right from the CLI — and for schedules that must survive your terminal closing, the repository's GitHub Actions workflows provide the durable backstop. You'll set up both layers.
 

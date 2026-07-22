@@ -12,7 +12,7 @@ Over the next four hours, you'll take one small codebase — the Galactic Gadget
 
 ## Lab Overview
 
-This guided lab provides practical, hands-on experience with **GitHub Copilot SDK & Agent Merge: Agentic Developer Workflows**. You will build agentic developer workflows with the GitHub Copilot SDK in Python and Node.js, run AI-driven security reviews, drive agents from the redesigned Copilot CLI with voice and scheduling, and configure Agent Merge governance and audit in GitHub Enterprise Cloud — everything announced at Microsoft Build 2026.
+This guided lab provides practical, hands-on experience with **GitHub Copilot SDK & Agent Merge: Agentic Developer Workflows**. You will build agentic developer workflows with the GitHub Copilot SDK in Python and Node.js, run AI-driven security reviews, drive agents from the redesigned Copilot CLI with voice and scheduling, and configure Agent Merge governance and audit in GitHub Enterprise Cloud.
 
 ## Lab Objectives
 
