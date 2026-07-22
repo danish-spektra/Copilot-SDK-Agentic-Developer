@@ -1,0 +1,4 @@
+[    1040ms] [INFO] [O11Y] [DatadogRUM] Initialized {service: claude-ai, env: production, version: d8ab11fbd8} @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/shared-0-VcElU0VQ.js:0
+[    4333ms] [INFO] Clear-Site-Data header on 'https://claude.ai/api/auth/logout': Cleared data types: "storage". @ https://claude.ai/logout:0
+[    4554ms] [INFO] [O11Y] [DatadogRUM] Initialized {service: claude-ai, env: production, version: d8ab11fbd8} @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/shared-0-VcElU0VQ.js:0
+[    5101ms] [LOG] recaptchacompat disabled @ https://js.hcaptcha.com/1/api.js?render=explicit&recaptchacompat=off&onload=__antClientAttestationHcaptchaInvisibleReady:3
