@@ -50,7 +50,7 @@ Remember issue #101 from your Monday triage report — the one your own agent fl
      Acceptance criteria:
      - Reject any order item whose quantity is not a positive integer (400 with a clear error message)
      - Reject any order item whose productId does not exist in the catalog (400)
-     - Add tests covering both rejection cases and keep the existing 6 tests green
+     - Add tests covering both rejection cases and keep the existing Node.js and Python test suites green
      ```
 
    ![](./images/module4/m4-t1-create-issue.png)

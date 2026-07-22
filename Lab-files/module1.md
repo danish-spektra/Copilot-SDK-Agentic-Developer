@@ -70,16 +70,23 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
 
    ![](./images/module1/m1-t1-git-clone.png)
 
-1. Get to know your new codebase — install its dependencies and run the test suite to confirm a green baseline:
+1. Get to know your new codebase. The Galactic Gadget Shop is a **polyglot** repository: a Node.js storefront API (`server.js`, `routes/`) that you'll work on in Module 2, and a **Python warehouse analytics module** (`warehouse/`) — your home for this module — plus a backlog of reported issues in `data/issues.json`. Run the warehouse team's morning report to see the Python side in action:
 
    ```
-   npm install
-   npm test
+   python warehouse\inventory_report.py
    ```
 
-   You should see **6 passing tests**. This is the Galactic Gadget Shop API: a small Express storefront with a product catalog, an orders endpoint, and — importantly for you — a backlog of reported issues in `data/issues.json`.
+   ![](./images/module1/m1-t1-inventory-report.png)
 
-   ![](./images/module1/m1-t1-npm-test.png)
+1. Confirm a green baseline by running the Python test suite:
+
+   ```
+   python -m unittest discover -s warehouse
+   ```
+
+   You should see **6 passing tests** — the warehouse module works, and any agent-driven change later in the lab can be verified against this baseline.
+
+   ![](./images/module1/m1-t1-python-tests.png)
 
 1. Now authenticate the Copilot CLI. In the terminal, start it:
 
@@ -95,15 +102,17 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
 
 1. Type `/exit` and press **Enter** to leave the Copilot CLI for now — the SDK will manage it for you from here.
 
-1. Create a Python virtual environment and install the Copilot SDK:
+1. Create a Python virtual environment and install the project's Python dependencies — the repository's `requirements.txt` already lists the Copilot SDK:
 
    ```
    python -m venv .venv
    .venv\Scripts\activate
-   pip install github-copilot-sdk
+   pip install -r requirements.txt
    ```
 
    ![](./images/module1/m1-t1-pip-install.png)
+
+   > **Note:** The virtual environment keeps the SDK and its dependencies scoped to this project — the standard hygiene for any Python codebase, and the reason your global Python installation stays clean.
 
    > **Note:** The Python SDK bundles the Copilot CLI runtime automatically — your scripts don't depend on the globally installed CLI, so there's nothing extra to wire up.
 
@@ -290,8 +299,8 @@ The agent can read your repo — but its real power is calling **your** code. In
 
 In this module, you:
 
-- Cloned the Galactic Gadget Shop API and verified the pre-installed developer toolchain on the Lab VM.
-- Authenticated the GitHub Copilot CLI against your Copilot Business seat and installed the Copilot SDK into a Python virtual environment.
+- Cloned the polyglot Galactic Gadget Shop codebase, verified the pre-installed developer toolchain, and ran the Python warehouse module's restock report and test suite for a green baseline.
+- Authenticated the GitHub Copilot CLI against your Copilot Business seat and installed the Copilot SDK from `requirements.txt` into a Python virtual environment.
 - Built `triage_agent.py` — your first agentic workflow — and watched it read the repository and produce a Monday triage report, first as a single response and then streamed in real time.
 - Registered a custom tool with `@define_tool` and observed the agent decide, unprompted, when to call your code.
 - Mapped the five core SDK concepts — client, session, prompt, streaming, tools — that carry unchanged across all six supported languages.

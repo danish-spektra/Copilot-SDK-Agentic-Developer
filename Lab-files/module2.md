@@ -4,7 +4,7 @@
 
 ## Scenario
 
-Your Python triage agent was a hit — but Contoso Traders is a JavaScript shop at heart, and the storefront team won't adopt anything that isn't `npm install`-able. Meanwhile, a bigger problem just landed on your desk: during an archive cleanup, someone found the **legacy coupon service** from the 2019 storefront, and the team wants to bring it back for the summer sale. It hasn't seen a security review in seven years. Today you prove two things: that your Module 1 workflow ports to Node.js in minutes, and that Copilot's new `/security-review` skill can catch what seven years of neglect left behind — before the coupon service ships.
+Your Python triage agent was a hit with the warehouse team — but Contoso's storefront team lives in JavaScript, and they won't adopt anything that isn't `npm install`-able. Meanwhile, a bigger problem just landed on your desk: during an archive cleanup, someone found the **legacy coupon service** from the 2019 storefront, and the team wants to bring it back for the summer sale. It hasn't seen a security review in seven years. Today you prove two things: that your Module 1 workflow ports to Node.js in minutes, and that Copilot's new `/security-review` skill can catch what seven years of neglect left behind — before the coupon service ships.
 
 ## Overview
 
@@ -29,6 +29,17 @@ You will be able to complete the following tasks:
 Same agent, new passport. The Copilot SDK's six language bindings are thin layers over one shared runtime — so porting the triage agent is a translation exercise, not a rewrite. Fifteen minutes from `pip` to `npm`.
 
 1. In VS Code (with the **contoso-traders-api** folder still open), open a terminal via **Terminal > New Terminal**.
+
+1. So far you've lived on the warehouse (Python) side of the codebase. Meet the storefront half — install the Node.js dependencies and run its test suite to confirm a green baseline:
+
+   ```
+   npm install
+   npm test
+   ```
+
+   You should see **6 passing tests** covering the cart and discount logic that powers `routes/orders.js`.
+
+   ![](./images/module2/m2-t1-npm-test.png)
 
 1. Install the Copilot SDK for Node.js:
 

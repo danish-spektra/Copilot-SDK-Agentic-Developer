@@ -35,7 +35,7 @@ Participants should have:
 
 ## Architecture
 
-Your lab VM is a Windows JumpVM with the full developer toolchain pre-installed. You sign in to a **GitHub Enterprise Cloud** organization through Microsoft Entra single sign-on, where your account holds a **GitHub Copilot Business** seat. The lab codebase — the Galactic Gadget Shop API — lives in your GitHub account. In Modules 1 and 2, Copilot SDK agents run locally on the VM against the cloned repository. In Module 3, the Copilot CLI schedules recurring agent runs, backed by a GitHub Actions workflow in the repository. In Module 4, the Copilot cloud agent and Agent Merge operate on pull requests in GitHub Enterprise Cloud, with every agent action recorded in the enterprise audit log.
+Your lab VM is a Windows JumpVM with the full developer toolchain pre-installed. You sign in to a **GitHub Enterprise Cloud** organization through Microsoft Entra single sign-on, where your account holds a **GitHub Copilot Business** seat. The lab codebase — the Galactic Gadget Shop, a polyglot repository with a Node.js storefront API and a Python warehouse analytics module — lives in your GitHub account. In Modules 1 and 2, Copilot SDK agents run locally on the VM against the cloned repository. In Module 3, the Copilot CLI schedules recurring agent runs, backed by a GitHub Actions workflow in the repository. In Module 4, the Copilot cloud agent and Agent Merge operate on pull requests in GitHub Enterprise Cloud, with every agent action recorded in the enterprise audit log.
 
 ## Architecture Diagram
 
