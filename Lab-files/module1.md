@@ -47,22 +47,22 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
 
    > **Note:** If any command is not recognized, close and reopen the terminal so it picks up the latest PATH, then try again.
 
-1. In the Edge browser (where you signed in to GitHub in the Getting Started section), click your **profile avatar** in the top-right corner and select **Your repositories**.
+1. In the Edge browser (where you signed in to GitHub in the Getting Started section), navigate to your personal copy of the lab repository — the URL below is unique to your lab instance:
 
-   ![](./images/module1/m1-t1-your-repos.png)
+   **https://github.com/Cloudlabs-Enterprise/contoso-traders-api-<inject key="DeploymentID" enableCopy="false"/>**
 
-1. Select the **contoso-traders-api** repository from the list.
+   ![](./images/module1/m1-t1-open-repo.png)
 
-   ![](./images/module1/m1-t1-select-repo.png)
+   > **Note:** This repository was provisioned for you when your lab environment was created, and your account has **admin** access to it — you'll need that in Module 4 to configure branch rulesets and Agent Merge.
 
 1. Click the green **<> Code** button, ensure the **HTTPS** tab is selected, and click the **copy** icon next to the repository URL.
 
    ![](./images/module1/m1-t1-copy-clone-url.png)
 
-1. Back in the VS Code terminal, clone the repository and move into it — paste the URL you copied in place of the placeholder:
+1. Back in the VS Code terminal, clone the repository into a folder named `contoso-traders-api` and move into it — paste the URL you copied in place of the placeholder:
 
    ```
-   git clone <PASTE-YOUR-REPOSITORY-URL>
+   git clone <PASTE-YOUR-REPOSITORY-URL> contoso-traders-api
    cd contoso-traders-api
    ```
 
