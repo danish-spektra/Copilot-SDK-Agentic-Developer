@@ -24,17 +24,29 @@ You will be able to complete the following tasks:
 
 ## Task 1: Set up the GitHub Copilot SDK (GA) in a Python project
 
-Before an agent can triage anything, it needs a codebase to work in and a runtime to think with. In this task, you'll clone the Galactic Gadget Shop API, verify the pre-installed toolchain, authenticate the Copilot CLI, and install the Python SDK.
+Before an agent can triage anything, it needs a codebase to work in and a runtime to think with. Good news: the Galactic Gadget Shop codebase was already cloned to your VM when it started. In this task, you'll open it, verify the pre-installed toolchain, authenticate the Copilot CLI, and install the Python SDK.
 
 1. On the Lab VM desktop, double-click the **Visual Studio Code** shortcut to launch it.
 
    ![](./images/module1/m1-t1-open-vscode.png)
 
-1. In Visual Studio Code, open a terminal by selecting **Terminal** from the top menu bar, then **New Terminal**.
+1. Select **File** from the menu bar, then **Open Folder...**, and open the pre-cloned codebase at:
+
+   ```
+   C:\contoso-traders-api
+   ```
+
+   Click **Yes, I trust the authors** if prompted.
+
+   ![](./images/module1/m1-t1-open-folder.png)
+
+   > **Note:** This folder was cloned onto your C: drive automatically when the lab VM was provisioned — there's nothing to download. Your Copilot features come from your GitHub Enterprise sign-in (Getting Started), and they work on any code open in this VM, including this folder.
+
+1. Open a terminal by selecting **Terminal** from the top menu bar, then **New Terminal**. Because the folder is open, the terminal starts inside `C:\contoso-traders-api`.
 
    ![](./images/module1/m1-t1-new-terminal.png)
 
-1. In the terminal, verify the pre-installed toolchain by running each of the following commands. Each should print a version number:
+1. Verify the pre-installed toolchain by running each of the following commands. Each should print a version number:
 
    ```
    git --version
@@ -46,27 +58,6 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
    ![](./images/module1/m1-t1-verify-tools.png)
 
    > **Note:** If any command is not recognized, close and reopen the terminal so it picks up the latest PATH, then try again.
-
-1. In the Edge browser (where you signed in to GitHub in the Getting Started section), navigate to your personal copy of the lab repository — the URL below is unique to your lab instance:
-
-   **https://github.com/Cloudlabs-Enterprise/contoso-traders-api-<inject key="DeploymentID" enableCopy="false"/>**
-
-   ![](./images/module1/m1-t1-open-repo.png)
-
-   > **Note:** This repository was provisioned for you when your lab environment was created, and your account has **admin** access to it — you'll need that in Module 4 to configure branch rulesets and Agent Merge.
-
-1. Click the green **<> Code** button, ensure the **HTTPS** tab is selected, and click the **copy** icon next to the repository URL.
-
-   ![](./images/module1/m1-t1-copy-clone-url.png)
-
-1. Back in the VS Code terminal, clone the repository into a folder named `contoso-traders-api` and move into it — paste the URL you copied in place of the placeholder:
-
-   ```
-   git clone <PASTE-YOUR-REPOSITORY-URL> contoso-traders-api
-   cd contoso-traders-api
-   ```
-
-   ![](./images/module1/m1-t1-git-clone.png)
 
 1. Get to know your new codebase. The Galactic Gadget Shop is a **polyglot** repository: a Node.js storefront API (`server.js`, `routes/`) that you'll work on in Module 2, and a **Python warehouse analytics module** (`warehouse/`) — your home for this module — plus a backlog of reported issues in `data/issues.json`. Run the warehouse team's morning report to see the Python side in action:
 
@@ -118,9 +109,7 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
 
 Time to hand Monday's chore to an agent. You'll write a small script that starts a Copilot session, points it at the issue backlog, and asks for a triage report — first as a single response, then streamed token-by-token like a real assistant.
 
-1. In VS Code, select **File** from the menu bar, then **Open Folder...**, and open `C:\Users\<your-username>\contoso-traders-api` (the folder you cloned). Click **Yes, I trust the authors** if prompted.
-
-   ![](./images/module1/m1-t2-open-folder.png)
+1. With `C:\contoso-traders-api` still open in VS Code, look at the **Explorer** pane on the left — you'll be adding your agent scripts here.
 
 1. In the Explorer pane, right-click in the empty space below the file list and select **New Folder...**. Name it `agents`.
 

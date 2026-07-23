@@ -132,21 +132,40 @@ The ops team's wish: a triage report that shows up on its own. `/every` turns an
    /exit
    ```
 
-1. A CLI schedule lives only as long as your session — fine for a workday, wrong for ops. For a schedule with no laptop attached, back it with GitHub Actions. First, commit and push everything you've built so far. In the terminal, set your Git identity, then commit:
+1. A CLI schedule lives only as long as your session — fine for a workday, wrong for ops. For a schedule with no laptop attached, back it with GitHub Actions — which means your work needs to live in a repository **you own**. The codebase on your VM was cloned from a shared, read-only source, so you'll publish your own copy into your GitHub Enterprise account now. In the Edge browser, open a new tab and go to:
 
-   - **Name:** <inject key="GitHub User Name" enableCopy="true"/>
+   ```
+   https://github.com/new
+   ```
+
+1. Create the repository:
+
+   - **Repository name:** `contoso-traders-api`
+   - **Visibility:** **Private**
+   - Leave **Add a README**, **.gitignore**, and **license** all unchecked (your local project already has these files)
+   - Click **Create repository**
+
+   ![](./images/module3/m3-t3-new-repo.png)
+
+1. On the **Quick setup** page that appears, copy the HTTPS repository URL (it looks like `https://github.com/<your-username>/contoso-traders-api.git`).
+
+1. Back in the VS Code terminal, set your Git identity, point the project at your new repository, and push everything you've built. Replace `<REPO-URL>` with the URL you just copied:
+
+   - **Your GitHub user name:** <inject key="GitHub User Name" enableCopy="true"/>
 
    ```
    git config --global user.name "<your-github-username>"
    git config --global user.email "<your-github-username>@users.noreply.github.com"
+   git remote set-url origin <REPO-URL>
    git add .
    git commit -m "Add SDK agents, hardened coupon service, and comparison notes"
-   git push
+   git branch -M main
+   git push -u origin main
    ```
 
    ![](./images/module3/m3-t3-git-push.png)
 
-   > **Note:** If Git opens a browser window asking you to authorize the credential manager, click **Sign in with your browser** — you're already signed in to GitHub, so it completes in one click.
+   > **Note:** `git remote set-url origin` re-points the project from the shared source to your own repository, so your push lands in the copy you own. If Git opens a browser window to authorize the credential manager, click **Sign in with your browser** — you're already signed in to GitHub, so it completes in one click.
 
 1. In VS Code's Explorer pane, expand **.github > workflows**, right-click the **workflows** folder, select **New File...**, and name it `nightly-triage.yml`.
 
