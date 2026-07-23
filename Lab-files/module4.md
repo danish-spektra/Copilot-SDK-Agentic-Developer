@@ -22,8 +22,6 @@ You will be able to complete the following tasks:
 
 ![Architecture Diagram](./images/module4/architecture.png)
 
-> **Image-generation prompt:** *A flat-design pipeline diagram on a white background, flowing left to right. Step 1: an issue icon labeled "Issue #1: validate orders" with a small robot badge labeled "assigned to Copilot". Arrow to Step 2: a pull request icon labeled "PR by Copilot cloud agent". Arrow to Step 3: a large box labeled "Agent Merge" containing three checklist rows: "monitors CI", "tracks required reviewers", "merges when conditions met". Above the box, a policy scroll icon labeled "branch ruleset: CI must pass". Arrow to Step 4: a merged-PR icon in purple labeled "merged". Below the whole pipeline, a wide bar labeled "Enterprise audit log — actor_is_agent, on behalf of user" with a magnifying glass icon. GitHub palette: dark gray, blue, purple accent for the merge.*
-
 ## Task 1: Configure Agent Merge for multi-agent pull request workflows
 
 Remember issue #101 from your Monday triage report — the one your own agent flagged as fix-first? A customer ordered **-3 jetpacks**. Time to close the loop: instead of fixing it yourself, you'll file it as a GitHub issue, hand it to the Copilot cloud agent, and put the resulting pull request under Agent Merge's care.

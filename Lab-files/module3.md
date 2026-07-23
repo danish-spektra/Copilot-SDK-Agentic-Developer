@@ -22,8 +22,6 @@ You will be able to complete the following tasks:
 
 ![Architecture Diagram](./images/module3/architecture.png)
 
-> **Image-generation prompt:** *A flat-design diagram on a white background. Center: a large terminal window labeled "Copilot CLI — experimental TUI" showing four tab labels across its top: "Session, Issues, Pull requests, Gists". Left of the terminal: a microphone icon with a sound wave labeled "local voice input" and a rubber duck icon labeled "/rubber-duck", both with arrows into the terminal. Right of the terminal: a clock icon labeled "/every 30m" with an arrow to a GitHub Actions gear/octopus icon labeled "scheduled workflow (cron)" and a calendar badge labeled "nightly run". GitHub dark-gray and blue palette with a yellow accent on the duck.*
-
 ## Task 1: Navigate the redesigned Copilot CLI text-based UI (TUI)
 
 The old CLI was a prompt; the new one is a workspace. In this task, you'll switch on the experimental interface and discover that your issues, pull requests, and gists now live one Tab keypress away from your agent session — then put the famous rubber duck to work on your Module 2 code.

@@ -41,8 +41,6 @@ Your lab VM is a Windows JumpVM with the full developer toolchain pre-installed.
 
 ![Architecture Diagram](./images/gettingstarted/architecture.png)
 
-> **Image-generation prompt:** *A clean, professional cloud architecture diagram on a white background. Left: a Windows lab VM box containing icons for VS Code, Git, Node.js, Python, and a terminal labeled "Copilot CLI + Copilot SDK agents". Center: an arrow labeled "Entra SSO" pointing to a GitHub Enterprise Cloud box containing a repository icon labeled "contoso-traders-api", a GitHub Actions icon labeled "CI + scheduled runs", and a robot icon labeled "Copilot cloud agent + Agent Merge". Right: a shield icon labeled "Enterprise governance: Agents control plane + Audit log". Flat design, GitHub dark-gray and blue color palette, labeled arrows showing flow from developer to repository to governance.*
-
 ## Explanation of Components
 
 - **GitHub Copilot SDK (GA)** — A multi-language SDK (Python, Node.js/TypeScript, Go, .NET, Rust, Java) that exposes the same agent runtime Copilot itself uses — planning, tool invocation, file edits, sessions, and streaming — as an embeddable library for your own applications.

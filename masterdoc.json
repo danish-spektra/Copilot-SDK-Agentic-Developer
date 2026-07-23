@@ -1,0 +1,26 @@
+[ {
+  "Name": "Copilot-SDK-Agentic-Developer",
+  "Language": "English",
+  "Files": [
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/danish-spektra/Copilot-SDK-Agentic-Developer/refs/heads/main/Lab-files/gettingstarted.md",
+      "Order": 1
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/danish-spektra/Copilot-SDK-Agentic-Developer/refs/heads/main/Lab-files/module1.md",
+      "Order": 2
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/danish-spektra/Copilot-SDK-Agentic-Developer/refs/heads/main/Lab-files/module2.md",
+      "Order": 3
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/danish-spektra/Copilot-SDK-Agentic-Developer/refs/heads/main/Lab-files/module3.md",
+      "Order": 4
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/danish-spektra/Copilot-SDK-Agentic-Developer/refs/heads/main/Lab-files/module4.md",
+      "Order": 5
+    }
+  ]
+} ]

@@ -22,8 +22,6 @@ You will be able to complete the following tasks:
 
 ![Architecture Diagram](./images/module1/architecture.png)
 
-> **Image-generation prompt:** *A simple horizontal flow diagram on a white background, flat design. Left: a Python file icon labeled "triage_agent.py". Arrow labeled "CopilotClient → session → prompt" to a center box labeled "Copilot SDK (bundled Copilot CLI runtime)" with a small robot icon. Arrow labeled "reads files, calls tools" to a right box: a repository folder labeled "contoso-traders-api" containing "data/issues.json". A return arrow labeled "streamed triage report" curves back from the center box to the Python file. GitHub blue and dark-gray palette.*
-
 ## Task 1: Set up the GitHub Copilot SDK (GA) in a Python project
 
 Before an agent can triage anything, it needs a codebase to work in and a runtime to think with. In this task, you'll clone the Galactic Gadget Shop API, verify the pre-installed toolchain, authenticate the Copilot CLI, and install the Python SDK.

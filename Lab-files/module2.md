@@ -22,8 +22,6 @@ You will be able to complete the following tasks:
 
 ![Architecture Diagram](./images/module2/architecture.png)
 
-> **Image-generation prompt:** *A flat-design diagram on a white background, split into two halves. Top half: two file icons side by side — "triage_agent.py" with a Python logo and "triage-agent.mjs" with a Node.js logo — both with arrows converging into one shared box labeled "Copilot SDK — same agent runtime, six languages". Bottom half: a terminal window icon labeled "Copilot CLI /security-review" scanning a file icon labeled "legacy/coupon-service.js" with a red warning badge, producing a list with shield icons labeled "findings: severity × confidence". GitHub dark-gray, blue, and one red accent.*
-
 ## Task 1: Port the Module 1 workflow to the Copilot SDK for Node.js
 
 Same agent, new passport. The Copilot SDK's six language bindings are thin layers over one shared runtime — so porting the triage agent is a translation exercise, not a rewrite. Fifteen minutes from `pip` to `npm`.
