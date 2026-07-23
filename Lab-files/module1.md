@@ -275,7 +275,7 @@ The agent can read your repo — but its real power is calling **your** code. In
 
 ---
 
-<validation step="REPLACE-WITH-ACTUAL-GUID" />
+<!-- <validation step="xxxx-xxxx-xxxx-xxxx" /> -->
 
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task.

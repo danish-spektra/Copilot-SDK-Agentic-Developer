@@ -226,7 +226,7 @@ The ops team's wish: a triage report that shows up on its own. `/every` turns an
 
 ---
 
-<validation step="REPLACE-WITH-ACTUAL-GUID" />
+<!-- <validation step="REPLACE-WITH-ACTUAL-GUID" /> -->
 
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task.

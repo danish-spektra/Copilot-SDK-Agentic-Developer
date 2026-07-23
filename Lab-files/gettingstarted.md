@@ -57,11 +57,12 @@ Welcome to the GitHub Copilot SDK & Agent Merge lab! Use this guide to set up yo
 
 ## Accessing Your Lab Environment
 
-> **Important — Disconnect VPN before launching the lab:** If you are connected to a corporate or personal VPN, please **disconnect it before accessing the lab environment**. Active VPN connections are a known cause of disconnections, slow loading, and authentication failures while accessing the virtual machine and GitHub.
 
 Once you're ready to dive in, your virtual machine and lab **Guide** will be right at your fingertips within your web browser.
 
 ![](./images/gettingstarted/gs-lab-environment.png)
+
+> **Important — Disconnect VPN before launching the lab:** If you are connected to a corporate or personal VPN, please **disconnect it before accessing the lab environment**. Active VPN connections are a known cause of disconnections, slow loading, and authentication failures while accessing the virtual machine and GitHub.
 
 ## Virtual Machine & Lab Guide
 
@@ -109,7 +110,7 @@ Feel free to **Start, Stop, or Restart (2)** your virtual machine as needed from
 
      ![](./images/gettingstarted/gs-github-username.png)
 
-   > **Note:** After entering the **GitHub User Name**, ensure you click **Sign in with your identity provider (2)**. Do not enter a password — this CloudLabs GitHub account is provisioned through the organization's identity provider, and standard password login is not supported.
+      > **Note:** After entering the **GitHub User Name**, ensure you click **Sign in with your identity provider (2)**. Do not enter a password — this CloudLabs GitHub account is provisioned through the organization's identity provider, and standard password login is not supported.
 
 1. Click on **Continue** on the **Single sign-on to CloudLabs Organizations** page to proceed.
 
