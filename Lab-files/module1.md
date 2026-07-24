@@ -42,7 +42,7 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
 
    ![](./images/module1/m1-t1-drive.png)
 
-   Click **Yes, I trust the authors** if prompted.
+   Click **Yes, I trust the authors** if prompted. Thye Codebase is in the explorer pane, take your time to look into it.
 
    ![](./images/module1/m1-t1-open-folder.png)
 
@@ -133,7 +133,7 @@ Time to hand Monday's chore to an agent. You'll write a small script that starts
 
    ![](./images/module1/m1-t2-new-file.png)
 
-1. Paste the following code into `triage_agent.py` and save the file with **Ctrl+S**:
+1. Paste the following code into `triage_agent.py` **(2)** and save the file with **Ctrl+S (1)**:
 
    ```python
    import asyncio
@@ -164,6 +164,8 @@ Time to hand Monday's chore to an agent. You'll write a small script that starts
 
    asyncio.run(main())
    ```
+
+   ![](./images/module1/m1-t2-triagepy.png)
 
 1. Open a new terminal (**Terminal > New Terminal**), activate the virtual environment, and run your agent:
 
@@ -234,9 +236,7 @@ Time to hand Monday's chore to an agent. You'll write a small script that starts
 
 The agent can read your repo — but its real power is calling **your** code. In this task, you'll register a custom tool the agent can invoke, then step back and name the concepts you've been using, because in Module 2 you'll meet them all again wearing JavaScript syntax.
 
-1. In the **agents** folder, create a new file named `stats_agent.py`.
-
-1. Paste the following code and save. It defines a **custom tool** — a plain Python function the agent may call whenever it decides your data is needed:
+1. In the **agents** folder, create a **new file (1)** named `stats_agent.py` **(2)**. Paste the following code and **save**. It defines a **custom tool** — a plain Python function the agent may call whenever it decides your data is needed:
 
    ```python
    import asyncio
@@ -275,7 +275,9 @@ The agent can read your repo — but its real power is calling **your** code. In
    asyncio.run(main())
    ```
 
-1. Run the agent:
+   ![](./images/module1/m1-t3-stats-agent.png)
+
+1. **Run** the agent:
 
    ```
    python agents\stats_agent.py
@@ -297,7 +299,7 @@ The agent can read your repo — but its real power is calling **your** code. In
    | **Streaming** | Token-by-token events instead of one final blob | `streaming=True` + `session.on(...)` |
    | **Tools** | Your functions, invoked at the agent's discretion | `@define_tool` |
 
-   In Module 2, you'll write this exact table in JavaScript — same nouns, different syntax.
+   In **Exercise 2**, you'll write this exact table in JavaScript — same nouns, different syntax.
 
 ---
 
@@ -325,4 +327,4 @@ In this module, you:
 
 ### You have successfully completed this module. Please continue to the next one >>
 
-![](./images/gettingstarted/gs-next.png)
+![](./images/module1/gs-next.png)
