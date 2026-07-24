@@ -54,14 +54,19 @@ Same agent, new passport. The Copilot SDK's six language bindings are thin layer
 1. Paste the following code — read it side by side with `triage_agent.py` as you do — and save with **Ctrl+S**:
 
    ```javascript
-   import { CopilotClient } from "@github/copilot-sdk";
+   import { CopilotClient, approveAll } from "@github/copilot-sdk";
 
    // The client manages the bundled Copilot runtime
    const client = new CopilotClient();
    await client.start();
 
-   // A session is one conversation with the agent
-   const session = await client.createSession({ model: "auto" });
+   // A session is one conversation with the agent.
+   // onPermissionRequest: approveAll auto-approves the agent's tool calls
+   // (reading repo files, searching) so it can act without prompting.
+   const session = await client.createSession({
+     model: "auto",
+     onPermissionRequest: approveAll,
+   });
 
    const response = await session.sendAndWait(
      "Read data/issues.json in this repository and write a Monday triage report: " +

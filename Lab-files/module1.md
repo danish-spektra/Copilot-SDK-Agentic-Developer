@@ -30,11 +30,17 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
 
    ![](./images/module1/m1-t1-open-vscode.png)
 
-1. Select **File** from the menu bar, then **Open Folder...**, and open the pre-cloned codebase at:
+1. Select **File (1)** from the menu bar, then **Open Folder... (2)** to navigate to the existing workspace.
+
+   ![](./images/module1/m1-t1-folder-open.png)
+
+1. **Navigate (1)** and **open (2)** the pre-cloned codebase at:
 
    ```
    C:\contoso-traders-api
    ```
+
+   ![](./images/module1/m1-t1-drive.png)
 
    Click **Yes, I trust the authors** if prompted.
 
@@ -42,7 +48,7 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
 
    > **Note:** This folder was cloned onto your C: drive automatically when the lab VM was provisioned — there's nothing to download. Your Copilot features come from your GitHub Enterprise sign-in (Getting Started), and they work on any code open in this VM, including this folder.
 
-1. Open a terminal by selecting **Terminal** from the top menu bar, then **New Terminal**. Because the folder is open, the terminal starts inside `C:\contoso-traders-api`.
+1. Open a terminal by selecting **Eclipse(...) (1)** from the top menu bar, then select **Terminal (2)** and then **New Terminal (3)**. Because the folder is open, the terminal starts inside `C:\contoso-traders-api`.
 
    ![](./images/module1/m1-t1-new-terminal.png)
 
@@ -57,9 +63,13 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
 
    ![](./images/module1/m1-t1-verify-tools.png)
 
-   > **Note:** If any command is not recognized, close and reopen the terminal so it picks up the latest PATH, then try again.
+   > **Note:** If any command is not recognized, close and reopen the terminal so it picks up the latest PATH, then try again. On a freshly started VM, `copilot` may take an extra minute to finish installing after first sign-in — if `copilot --version` isn't recognized, wait a moment, open a new terminal, and retry.
 
-1. Get to know your new codebase. The Galactic Gadget Shop is a **polyglot** repository: a Node.js storefront API (`server.js`, `routes/`) that you'll work on in Module 2, and a **Python warehouse analytics module** (`warehouse/`) — your home for this module — plus a backlog of reported issues in `data/issues.json`. Run the warehouse team's morning report to see the Python side in action:
+1. Get to know your new codebase. The Galactic Gadget Shop is a **polyglot** repository: a Node.js storefront API (`server.js`, `routes/`) **(1)** that you'll work on in Module 2, and a **Python warehouse analytics module (2)** (`warehouse/`) — your home for this module — plus a backlog of reported issues in `data/issues.json` **(3)**.
+
+   ![](./images/module1/m1-t1-know-codebase.png)
+
+1. Run the warehouse team's morning report to see the Python side in action:
 
    ```
    python warehouse\inventory_report.py
@@ -83,11 +93,15 @@ Before an agent can triage anything, it needs a codebase to work in and a runtim
    copilot
    ```
 
-1. If prompted to sign in, follow the on-screen instructions: the CLI displays a one-time device code and opens (or asks you to open) `https://github.com/login/device` in the browser. Enter the code and click **Continue**, then **Authorize** — you are already signed in to GitHub from the Getting Started steps, so no credentials are needed.
+1. If prompted to sign in, follow the on-screen instructions: the CLI displays a one-time device code and opens (or asks you to open) `https://github.com/login/device` in the browser. Enter the code and click **Continue**, then **Authorize** — you are **already signed in to GitHub from the Getting Started steps**, so no credentials are needed. If asked by copilot to trust the folder, you can click enter on **> Yes**.
 
    ![](./images/module1/m1-t1-copilot-auth.png)
 
    > **Note:** The Copilot CLI authenticates against your **GitHub Copilot Business** seat. If you see a message that Copilot is not available on your account, wait 2–3 minutes (seat provisioning can lag on first login) and run `copilot` again.
+   >
+   > If you have not logged in use `/login` and navigate to `github.com/login/device`, you will be prompted to use an **authorization code** which has to be pasted in the browser and your account will then be authenticated to the **copilot cli**
+   >
+   > ![](./images/module1/m1-t1-copilot-device.png)
 
 1. Type `/exit` and press **Enter** to leave the Copilot CLI for now — the SDK will manage it for you from here.
 
@@ -111,9 +125,11 @@ Time to hand Monday's chore to an agent. You'll write a small script that starts
 
 1. With `C:\contoso-traders-api` still open in VS Code, look at the **Explorer** pane on the left — you'll be adding your agent scripts here.
 
-1. In the Explorer pane, right-click in the empty space below the file list and select **New Folder...**. Name it `agents`.
+1. In the Explorer pane, on the top select **New Folder Icon (1)**. Name it `agents` **(2)**.
 
-1. Right-click the **agents** folder, select **New File...**, and name it `triage_agent.py`.
+   ![](./images/module1/m1-t2-new-folder.png)
+
+1. Right-click the **agents (1)** folder, select **New File... (2)**, and name it `triage_agent.py`.
 
    ![](./images/module1/m1-t2-new-file.png)
 
@@ -122,14 +138,20 @@ Time to hand Monday's chore to an agent. You'll write a small script that starts
    ```python
    import asyncio
    from copilot import CopilotClient
+   from copilot.session import PermissionHandler
 
    async def main():
        # The client manages the bundled Copilot runtime
        client = CopilotClient()
        await client.start()
 
-       # A session is one conversation with the agent
-       session = await client.create_session(model="auto")
+       # A session is one conversation with the agent.
+       # on_permission_request auto-approves the agent's tool calls
+       # (reading repo files, searching) so it can act without prompting.
+       session = await client.create_session(
+           model="auto",
+           on_permission_request=PermissionHandler.approve_all,
+       )
 
        response = await session.send_and_wait(
            "Read data/issues.json in this repository and write a Monday triage report: "
@@ -152,6 +174,8 @@ Time to hand Monday's chore to an agent. You'll write a small script that starts
 
    ![](./images/module1/m1-t2-run-agent.png)
 
+   > **Important:** Authenticate the Copilot CLI (one time). The Python agents drive the GitHub Copilot CLI, which must be signed in first. Run copilot, then /login, and complete the browser device-flow with your lab GitHub credentials. You only do this once per VM.
+
 1. Read the output. The agent read `data/issues.json` on its own, ranked the negative-quantity jetpack bug and the oversold stock issue as high severity, and produced the same report a teammate would have spent the morning writing.
 
    ![](./images/module1/m1-t2-triage-output.png)
@@ -163,6 +187,7 @@ Time to hand Monday's chore to an agent. You'll write a small script that starts
    ```python
    import asyncio
    from copilot import CopilotClient
+   from copilot.session import PermissionHandler
 
    def handle_event(event):
        # Print assistant output as it arrives
@@ -174,7 +199,11 @@ Time to hand Monday's chore to an agent. You'll write a small script that starts
        client = CopilotClient()
        await client.start()
 
-       session = await client.create_session(model="auto", streaming=True)
+       session = await client.create_session(
+           model="auto",
+           streaming=True,
+           on_permission_request=PermissionHandler.approve_all,
+       )
        session.on(handle_event)
 
        await session.send_and_wait(
@@ -213,6 +242,7 @@ The agent can read your repo — but its real power is calling **your** code. In
    import asyncio
    import json
    from copilot import CopilotClient, define_tool
+   from copilot.session import PermissionHandler
    from pydantic import BaseModel
 
    class SeverityParams(BaseModel):
@@ -231,6 +261,7 @@ The agent can read your repo — but its real power is calling **your** code. In
        session = await client.create_session(
            model="auto",
            tools=[get_issues_by_severity],
+           on_permission_request=PermissionHandler.approve_all,
        )
 
        response = await session.send_and_wait(
