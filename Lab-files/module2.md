@@ -197,7 +197,7 @@ The legacy coupon service is back from the archive — and it's a time capsule o
 
       ![](./images/module2/m2-t2-fix-review.png)
 
-      > **Note:** You can review and approve the changes as required to make sure the faults are cleaned. Focus on changes for only the legacy file you created.
+      > **Note:** You can review and approve the changes as required to make sure the faults are cleaned. The scan covers **all** your uncommitted changes, so alongside `legacy/coupon-service.js` you may also see Copilot flag and harden the new `agents/triage-agent.mjs` — approve those too; you'll see the effect of that hardening in Task 3.
 
 1. Type a custom prompt by asking the agent to remediate the worst one — type the following prompt and press **Enter**:
 
@@ -215,7 +215,17 @@ The legacy coupon service is back from the archive — and it's a time capsule o
 
 ## Task 3: Compare SDK behavior and output across the two languages
 
-You now have the same agent in **two languages** and a **security-hardened codebase**. Before Contoso standardizes on one SDK — or both — the team wants an engineering answer, not a preference: what's actually identical across the bindings, and what differs?
+You now have the same agent in **two languages** — but they are no longer identical. When you ran `/security-review` in Task 2, the scan looked at **every** uncommitted change in your working tree, not just the coupon service. That included the brand-new `agents/triage-agent.mjs`, and Copilot flagged its `approveAll` handler as a risk: an agent that auto-approves *every* tool call can be steered by hostile text hidden in the data it reads. When you approved the fixes, Copilot **rewrote the Node agent's permission handler for you**. The Python agent was never in that scan, so it still auto-approves everything.
+
+That asymmetry is the experiment: run the two agents back to back and watch what a Copilot-hardened binding does differently from an untouched one.
+
+1. Open `triage-agent.mjs`and read what Copilot changed during the **Task 2 review**. The `approveAll` import and `onPermissionRequest: approveAll` are gone; in their place is an **allowlist** handler that permits only **read-only tools** and denies everything else:
+
+   ![](./images/module2/m2-t3-readonly-handler.png)
+
+   > **Note:** This is a **fail-closed** handler — it approves a tool *only* when it can positively match the name against `READ_ONLY_TOOLS`, and denies in every other case. That's the correct security direction: an agent that reads untrusted data (`issues.json` could carry hostile instructions) must never be able to escalate to a write or shell tool on the strength of that data.
+
+   > **If your file still shows `approveAll`:** the review didn't extend the fix to your agent. Restart the Copilot CLI (`copilot`) and run this prompt, then approve the diff: `Harden agents/triage-agent.mjs — replace the approveAll permission handler with one that allows only read-only tools (read_file, search, list_files, get_file_contents) and denies everything else, logging blocked calls.`
 
 1. Run both agents **back to back in the terminal** (make sure your **Python virtual environment** is still **active** for the first command):
 
@@ -224,11 +234,18 @@ You now have the same agent in **two languages** and a **security-hardened codeb
    node agents\triage-agent.mjs
    ```
 
-   ![](./images/module2/m2-t3-side-by-side.png)
+   > **Hint:** Use the split terminal window to see the comparison
 
-1. Compare the two reports. The wording differs between runs — the model generates fresh text each time — but check what's structurally the same: both agents identified the repository context, both read `data/issues.json` unprompted, both ranked the same two issues (negative quantities, oversold stock) as high severity.
+1. Read the two terminals **side by side** — they now **diverge**, and that divergence is the finding:
 
-1. Record your comparison. Create a new file at the repository root named `SDK-COMPARISON.md`, paste the table below, and save it — this becomes your recommendation memo to the Contoso team:
+   - **Python (left)** still **auto-approves**, so it reads `data/issues.json` unprompted and prints a full Monday triage report — issues grouped by severity, a next step per issue, and a pick for what to fix first.
+   - **Node (right)** refuses. Copilot's hardened handler can't confirm the incoming tool against its allowlist, so it denies — you'll see `[security] Blocked tool call` for each attempt. Cut off from the repo, the agent doesn't crash or invent data: it reports that it's blocked and **asks you to paste the file contents** so it can still produce the report. That graceful, no-repo-access fallback *is* the deny-by-default posture working as intended.
+
+      ![](./images/module2/m2-t3-side-by-side.png)
+
+      > **Note:** The blocked lines and the agent's "I can't read the repo yet" reply are the **expected** result here — not an error to fix. The Node agent is running under the stricter policy Copilot gave it in **Task 2**; the terminal is simply showing you that policy in force.
+
+1. Record your comparison. Create a **new file (1)** at the repository root named `SDK-COMPARISON.md` **(2)**, paste the table below, and save it — this becomes your **recommendation memo to the Contoso team**. You can toggle the preview icon (3) to see the markdown file in a readable format. 
 
    ```markdown
    # Copilot SDK: Python vs Node.js — Field Notes
@@ -238,12 +255,14 @@ You now have the same agent in **two languages** and a **security-hardened codeb
    | Install | pip install github-copilot-sdk | npm install @github/copilot-sdk | Equivalent |
    | Client/session/prompt shape | create_session / send_and_wait | createSession / sendAndWait | Same concepts, local naming |
    | Bundled CLI runtime | Yes | Yes | No separate install either way |
-   | Streaming | streaming=True + session.on() | session.on() event handlers | Same event stream |
-   | Custom tools | @define_tool + typed params | tool definitions with schemas | Same discretionary invocation |
-   | Agent output quality | Same runtime | Same runtime | Identical — language is a client detail |
+   | Permission hook | on_permission_request | onPermissionRequest | Same hook, deny-by-default, you supply the policy |
+   | Policy in this run | approve_all (permissive) | read-only allowlist (fail-closed) | Behavior tracked the policy, not the language |
+   | Agent output quality | Same runtime | Same runtime | Identical when the policy is equal — language is a client detail |
    ```
 
-1. The takeaway for your pilot report: **the SDK language is a deployment detail, not an architecture decision.** Teams pick the binding that matches their stack; the agent behavior, tool model, and governance story stay uniform — which is exactly what makes an org-wide rollout tractable.
+   ![](./images/module2/m2-t3-comparison.png)
+
+1. The takeaway for your pilot report: **the difference you just saw was policy, not language.** Both agents ran on the same bundled runtime; the only thing that changed the behavior was the **permission handler — and Copilot changed it** for the Node agent because that file happened to be in the security scan. Apply the same fix to the Python agent and it blocks identically; loosen the Node one back to `approveAll` and it reports freely again. So the SDK language is a **deployment detail** — teams pick the binding that matches their stack — while the security posture is a **per-session policy you own**, uniform across every binding. That separation is exactly what makes an org-wide rollout tractable.
 
 ---
 
@@ -266,7 +285,7 @@ In this module, you:
 - Ported the Monday triage agent from Python to Node.js with `@github/copilot-sdk`, and confirmed the port was a line-for-line translation — same client, session, prompt, and response shapes.
 - Resurrected the 2019 legacy coupon service and ran the experimental `/security-review` skill against it as a pending local change.
 - Triaged severity- and confidence-scored findings across four vulnerability classes — hardcoded credentials, SQL injection, weak cryptography, and `eval()` injection — then delegated a fix to Copilot and re-scanned to verify it.
-- Compared SDK behavior across the two languages and documented the engineering verdict in `SDK-COMPARISON.md`: the runtime is shared; the language binding is a client detail.
+- Ran both agents side by side and saw them diverge — the Python agent reported freely while the Copilot-hardened Node agent blocked its own tool calls — then documented the verdict in `SDK-COMPARISON.md`: behavior tracks the permission policy you set, not the language binding.
 
 ### You have successfully completed this module. Please continue to the next one >>
 
