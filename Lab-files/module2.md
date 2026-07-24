@@ -4,7 +4,7 @@
 
 ## Scenario
 
-Your Python triage agent was a hit with the warehouse team — but Contoso's storefront team lives in JavaScript, and they won't adopt anything that isn't `npm install`-able. Meanwhile, a bigger problem just landed on your desk: during an archive cleanup, someone found the **legacy coupon service** from the 2019 storefront, and the team wants to bring it back for the summer sale. It hasn't seen a security review in seven years. Today you prove two things: that your Module 1 workflow ports to Node.js in minutes, and that Copilot's new `/security-review` skill can catch what seven years of neglect left behind — before the coupon service ships.
+Your Python triage agent was a hit with the warehouse team — but Contoso's storefront team lives in JavaScript, and they won't adopt anything that isn't `npm install`-able. Meanwhile, a bigger problem just landed on your desk: during an archive cleanup, someone found the **legacy coupon service** from the 2019 storefront, and the team wants to bring it back for the summer sale. It **hasn't seen a security review** in seven years. Today you prove two things: that your Module 1 workflow ports to Node.js in minutes, and that Copilot's new `/security-review` skill can catch what seven years of neglect left behind — before the coupon service ships.
 
 ## Overview
 
@@ -26,7 +26,9 @@ You will be able to complete the following tasks:
 
 Same agent, new passport. The Copilot SDK's six language bindings are thin layers over one shared runtime — so porting the triage agent is a translation exercise, not a rewrite. Fifteen minutes from `pip` to `npm`.
 
-1. In VS Code (with the **contoso-traders-api** folder still open), open a terminal via **Terminal > New Terminal**.
+1. In VS Code (with the **contoso-traders-api** folder still open), open a terminal via **Eclipse (1) > Terminal (2) > New Terminal (3)**.
+
+   ![](./images/module2/m2-t1-terminal.png)
 
 1. So far you've lived on the warehouse (Python) side of the codebase. Meet the storefront half — install the Node.js dependencies and run its test suite to confirm a green baseline:
 
@@ -39,7 +41,7 @@ Same agent, new passport. The Copilot SDK's six language bindings are thin layer
 
    ![](./images/module2/m2-t1-npm-test.png)
 
-1. Install the Copilot SDK for Node.js:
+1. Install the **Copilot SDK** for Node.js:
 
    ```
    npm install @github/copilot-sdk
@@ -49,7 +51,9 @@ Same agent, new passport. The Copilot SDK's six language bindings are thin layer
 
    > **Note:** Just like the Python package, the Node.js SDK bundles the Copilot CLI runtime — no separate installation or wiring needed.
 
-1. In the Explorer pane, right-click the **agents** folder, select **New File...**, and name it `triage-agent.mjs`.
+1. In the Explorer pane, click the **new file (1)** under the **agents (2)** folder, and name it `triage-agent.mjs` **(3)**.
+
+   ![](./images/module2/m2-t1-triage-agent.png)
 
 1. Paste the following code — read it side by side with `triage_agent.py` as you do — and save with **Ctrl+S**:
 
@@ -98,17 +102,17 @@ Same agent, new passport. The Copilot SDK's six language bindings are thin layer
 
    The only real differences are naming conventions (`snake_case` vs `camelCase`) and each language's async idioms. The agent behavior — planning, file reading, response structure — is identical, because it's the same runtime underneath.
 
-   > **Note:** The SDK is newly GA and its API surface is still being refined. If a method signature differs in the installed version, check `https://docs.github.com/en/copilot/how-tos/copilot-sdk` for the current Node.js examples — the concepts and structure remain the same.
+   > **Note:** The SDK is **newly GA** and its API surface is still being refined. If a method signature differs in the installed version, check `https://docs.github.com/en/copilot/how-tos/copilot-sdk` for the current Node.js examples — the concepts and structure remain the same.
 
 ## Task 2: Enable and run the /security-review skill against a codebase
 
 The legacy coupon service is back from the archive — and it's a time capsule of 2019's worst habits. Before the storefront team wires it into the summer sale, you'll let Copilot's dedicated security reviewer read it. `/security-review` scans your **local code changes** and returns findings scored by severity and confidence, across 11 vulnerability categories.
 
-1. In the Explorer pane, right-click in the empty space, select **New Folder...**, and name it `legacy`.
+1. In the Explorer pane, click the empty space and select **New Folder... (1)**, and name it `legacy` **(2)**. Right-click the **legacy** folder, select **New File...**, and name it `coupon-service.js` **(3)**.
 
-1. Right-click the **legacy** folder, select **New File...**, and name it `coupon-service.js`.
+   ![](./images/module2/m2-t2-coupen-file.png)
 
-1. Paste the recovered 2019 code below into the file exactly as-is and save. (Yes, it's bad. That's the point.)
+1. Paste the recovered 2019 code below into the file exactly as-is and save. **(Yes, it's bad. That's the point)**
 
    ```javascript
    const crypto = require("crypto");
@@ -146,7 +150,7 @@ The legacy coupon service is back from the archive — and it's a time capsule o
 
    ![](./images/module2/m2-t2-legacy-file.png)
 
-   > **Important:** Do not commit this file yet. `/security-review` analyzes your **uncommitted local changes** — the new file must still be pending in your working tree for the scan to pick it up. You can confirm with `git status`: `legacy/coupon-service.js` should appear as untracked.
+   > **Important:** Do not commit this file yet. `/security-review` analyzes your **uncommitted local changes** — the new file must still be pending in your working tree for the scan to pick it up. You can confirm with `git status`: `legacy/coupon-service.js` should appear as untracked **(U)**.
 
 1. In the terminal, start the Copilot CLI from the repository root:
 
@@ -170,6 +174,10 @@ The legacy coupon service is back from the archive — and it's a time capsule o
    /security-review
    ```
 
+   ![](./images/module2/m2-t2-security-experiment.png)
+
+   You would be asked to allow permission for searching/executing a command to which u can enter on 'yes'
+
    The skill scans your pending changes and, after a short analysis, returns a list of findings — each with a **severity**, a **confidence score**, the affected file and line, and a suggested remediation.
 
    ![](./images/module2/m2-t2-findings.png)
@@ -183,23 +191,33 @@ The legacy coupon service is back from the archive — and it's a time capsule o
    | MD5 used for signature verification | Weak cryptography | `verifyPartnerSignature` |
    | `eval()` of externally supplied input | Injection flaws | `applyPartnerRule` |
 
-1. Findings are only useful if they turn into fixes. Still inside the Copilot CLI, ask the agent to remediate the worst one — type the following prompt and press **Enter**:
+1. Findings are only useful if they turn into **fixes**. 
+
+   - Still inside the Copilot CLI, the Copilot would ask ur **permission to fix the issues**, you can click **enter** on fixing the highest severeity issues.
+
+      ![](./images/module2/m2-t2-fix-review.png)
+
+      > **Note:** You can review and approve the changes as required to make sure the faults are cleaned. Focus on changes for only the legacy file you created.
+
+1. Type a custom prompt by asking the agent to remediate the worst one — type the following prompt and press **Enter**:
 
    ```
    Fix the eval() injection in legacy/coupon-service.js: replace applyPartnerRule with a safe implementation that only supports percentage-off rules like "15%", and reject anything else.
    ```
 
-1. Review the diff Copilot proposes and approve the change when prompted. Then run `/security-review` once more and confirm the `eval` finding no longer appears.
+   ![](./images/module2/m2-t2-eval-fixed.png)
+
+1. Review the diff Copilot proposes and approve the change when prompted. You can run `/security-review` once more and confirm the `eval` finding no longer appears (In ase you need more scrutiny).
 
    ![](./images/module2/m2-t2-fixed-rescan.png)
 
-   > **Note:** This is the agentic security loop in miniature: scan → triage → delegate the fix → re-scan to verify. In Module 4, you'll see the same loop running server-side on pull requests, without you in the terminal at all.
+   > **Note:** This is the agentic security loop in miniature: **scan → triage → delegate the fix → re-scan** to verify. In **Exercise 4**, you'll see the same loop running server-side on pull requests, without you in the terminal at all.
 
 ## Task 3: Compare SDK behavior and output across the two languages
 
-You now have the same agent in two languages and a security-hardened codebase. Before Contoso standardizes on one SDK — or both — the team wants an engineering answer, not a preference: what's actually identical across the bindings, and what differs?
+You now have the same agent in **two languages** and a **security-hardened codebase**. Before Contoso standardizes on one SDK — or both — the team wants an engineering answer, not a preference: what's actually identical across the bindings, and what differs?
 
-1. Run both agents back to back in the terminal (make sure your Python virtual environment is still active for the first command):
+1. Run both agents **back to back in the terminal** (make sure your **Python virtual environment** is still **active** for the first command):
 
    ```
    python agents\triage_agent.py

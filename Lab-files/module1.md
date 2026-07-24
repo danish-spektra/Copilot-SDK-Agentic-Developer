@@ -283,9 +283,9 @@ The agent can read your repo — but its real power is calling **your** code. In
    python agents\stats_agent.py
    ```
 
-   ![](./images/module1/m1-t3-tool-call.png)
-
 1. Look closely at what just happened: the agent **decided on its own** to call `get_issues_by_severity` with `severity="high"`, received your function's return value, and reasoned over it — both high-severity issues come from the orders area, reported by ops and warehouse. You wrote the tool; the agent chose when to use it.
+
+   ![](./images/module1/m1-t3-tool-call.png)
 
    > **Note:** Tools are how agents safely touch your systems — databases, internal APIs, ticketing systems. The agent never executes your code directly; it requests a call, the SDK runs your function, and only the return value goes back to the model.
 
